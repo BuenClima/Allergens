@@ -1,0 +1,14 @@
+export class Restaurant{
+  restaurantName : string;
+  rating: number;
+  reviews: number;
+  allergens: any[];
+  price: string;
+  openTime: string;
+  closeTime: string;
+  takeOut: boolean;
+  cuisineType: string[];
+  latitude: number;
+  longitude: number;
+  rank: number;
+}
