@@ -1,0 +1,36 @@
+page-restaurant {
+  .allergen_icon{
+    width: 18%;
+    height: 18%;
+    margin-left: 2%;
+    float: left;
+  }
+
+  ion-list{
+    float: right;
+  }
+  #imgcontainer{
+    width: 45%;
+    float:left;
+  }
+
+  #imgcontainer img{
+    width: 100%;
+    height: 33%;
+    border-radius: 5%;
+  }
+
+  #rating{
+    margin-top: 5%;
+    font-size: 1.3em;
+  }
+
+  #dishes_container{
+    display: inline-block;
+  }
+
+  #infolist{
+    width: 54%;
+    float: left;
+  }
+}

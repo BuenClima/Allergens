@@ -1,17 +1,67 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <div id="search_box_container">
+    <ion-searchbar [(ngModel)]="searchTerm"
+                   (ionInput)="onSearchInput()"
+                   [showCancelButton]=true
+                   (ionCancel)="onCancelInput()"
+                    [debounce]="500"
+                   [placeholder]= "placeholder_search_bar"
+                  >
+    </ion-searchbar>
+  </div>
+  <custom-map></custom-map>
+  <div id="top_restaurants_container">
+    <h3>Top 5# restaurants in your city</h3>
+    <div id="restaurant_list">
+      <ion-list *ngFor="let restaurant of restaurant_list_sorted">
+        <ion-card class="top_five_restaurants_card">
+          <ion-card-title>
+            <a (click)="goToRestaurantDishes(restaurant.value.restaurantName, restaurant.type)">{{ restaurant.value.restaurantName }}</a>
+          </ion-card-title>
+          <ion-card-content>
+            <div class="rating_box">
+              <ionic3-star-rating
+                activeIcon="ios-star"
+                defaultIcon="ios-star-outline"
+                activeColor="#488aff"
+                defaultColor="#f4f4f4"
+                readonly="true"
+                [rating]= restaurant.value.rating >
+              </ionic3-star-rating>
+              {{ restaurant.value.rating }}/5 <br style="margin-top: 5%;">
+              {{ restaurant.value.reviews }} Reviews
+            </div>
+
+            <div class="image_container">
+            <img [src]="restaurant.value.imageUrl" class="top_five_restaurant_image">
+            </div>
+            <div class="allergen_box">
+              <div *ngFor="let allergen of restaurant.value.allergens">
+              <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)='showInfoBubble("Celery")'>
+              <img class="allergen_icon" [src]="crustacean_image_url" *ngIf="allergen == 'crustacean'" alt="Crustacean" (click)='showInfoBubble("Crustacean")'>
+              <img class="allergen_icon" [src]="egg_image_url" *ngIf="allergen == 'egg'" alt="Egg" (click)='showInfoBubble("Egg")'>
+              <img class="allergen_icon" [src]="fish_image_url" *ngIf="allergen == 'fish'" alt="Fish" (click)='showInfoBubble("Fish")'>
+              <img class="allergen_icon" [src]="lupin_image_url" *ngIf="allergen == 'lupin'" alt="Lupin" (click)='showInfoBubble("Lupin")'>
+              <img class="allergen_icon" [src]="milk_image_url" *ngIf="allergen == 'milk'" alt="Milk" (click)='showInfoBubble("Milk")'>
+              <img class="allergen_icon" [src]="mollusc_image_url" *ngIf="allergen == 'mollusc'" alt="Mollusc" (click)='showInfoBubble("Mollusc")'>
+              <img class="allergen_icon" [src]="mustard_image_url" *ngIf="allergen == 'mustard'" alt="Mustard" (click)='showInfoBubble("Mustard")'>
+              <img class="allergen_icon" [src]="nuts_image_url" *ngIf="allergen == 'nuts'" alt="Nuts" (click)='showInfoBubble("Nuts")'>
+              <img class="allergen_icon" [src]="peanuts_image_url" *ngIf="allergen == 'peanuts'" alt="Peanuts" (click)='showInfoBubble("Peanuts")'>
+              <img class="allergen_icon" [src]="sasame_image_url" *ngIf="allergen == 'sesame'" alt="Sesame" (click)='showInfoBubble("Sesame")'>
+              <img class="allergen_icon" [src]="soya_image_url" *ngIf="allergen == 'soya'" alt="Soya" (click)='showInfoBubble("Soya")'>
+              <img class="allergen_icon" [src]="sulphur_image_url" *ngIf="allergen == 'sulphur'" alt="Sulphur" (click)='showInfoBubble("Sulphur")'>
+              <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)='showInfoBubble("Wheat")'>
+
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+      <div id="infoBubble" *ngIf="showBubble == true" style="position: relative;">
+        {{ bubbletext }}
+      </div>
+    </div>
+  </div>
+  <div id="news">
+  </div>
 </ion-content>

@@ -46,22 +46,24 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$toast-ios-background:(#488aff);
+//$toast-ios-title-color:(#000000);
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
-
+//
+$toast-md-background:(#488aff);
+//$toast-md-title-color:(#000000);
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-
+$toast-wp-background:(#488aff);
+//$toast-wp-title-color:(#000000);
 
 // App Theme
 // --------------------------------------------------
@@ -86,3 +88,11 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+.toast-container{
+  text-align: center;
+  border: 1px solid black;
+}
+
+

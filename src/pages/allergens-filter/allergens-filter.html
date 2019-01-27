@@ -1,0 +1,80 @@
+<!--
+  Generated template for the AllergensFilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Allergens</ion-title>
+    <button (click)="applyFilter()" class="apply_button" ion-button color="secondary">Apply</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="allergen_check_box_container">
+    <ion-list>
+      <ion-item>
+        <ion-label>Celery<img class="allergen_icon checkbox-ios-secondary checkbox-md-secondary
+          checkbox-wp-secondary" [src]="celery_image_url" alt="Celery"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="celery_checkbox_option" ></ion-checkbox>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>Crustacean<img class="allergen_icon" [src]="crustacean_image_url" alt="Crustacean"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="crustacean_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Egg<img class="allergen_icon" [src]="egg_image_url" alt="Egg"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="egg_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fish<img class="allergen_icon" [src]="fish_image_url" alt="Fish"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="fish_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Lupin<img class="allergen_icon" [src]="lupin_image_url" alt="Lupin"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="lupin_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Milk<img class="allergen_icon" [src]="milk_image_url" alt="Milk"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="milk_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mollusc<img class="allergen_icon" [src]="mollusc_image_url" alt="Mollusc"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="mollusc_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mustard<img class="allergen_icon" [src]="mustard_image_url" alt="Mustard"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="mustard_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nuts<img class="allergen_icon" [src]="nuts_image_url" alt="Nuts"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="nuts_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Peanuts<img class="allergen_icon" [src]="peanuts_image_url" alt="Peanuts"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="peanuts_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sesame<img class="allergen_icon" [src]="sasame_image_url" alt="Sesame"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="sasame_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Soya<img class="allergen_icon" [src]="soya_image_url" alt="Soya"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="soya_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sulphur<img class="allergen_icon" [src]="sulphur_image_url" alt="Sulphur"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="sulphur_checkbox_option" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Wheat<img class="allergen_icon" [src]="wheat_image_url" alt="Wheat"></ion-label>
+        <ion-checkbox class="check_box_allergen" [(ngModel)]="wheat_checkbox_option" ></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

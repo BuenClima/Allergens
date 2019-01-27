@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Filter</ion-title>
+    <button (click)="applyFilter()" class="apply_button" ion-button color="secondary">Apply</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div id="list_container">
+    <ion-list>
+
+      <ion-item-group>
+        <ion-label>MostPopular</ion-label>
+        <ion-item>
+            <ion-label>Cheap</ion-label>
+            <ion-checkbox class="" [(ngModel)]="cheap_checkbox_option"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Mid-range</ion-label>
+            <ion-checkbox class="" [(ngModel)]="mid_range_checkbox_option"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fine Dining</ion-label>
+            <ion-checkbox class="" [(ngModel)]="fine_dining_checkbox_option"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Open now</ion-label>
+            <ion-checkbox class="" [(ngModel)]="open_now_checkbox_option"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Take out</ion-label>
+            <ion-checkbox class="" [(ngModel)]="take_out_checkbox_option"></ion-checkbox>
+          </ion-item>
+      </ion-item-group>
+      <ion-item>
+        <ion-label>Cuisine Type</ion-label>
+        <ion-select [(ngModel)]="cuisine_type" multiple="true">
+          <ion-option value="local">Local</ion-option>
+          <ion-option value="wok">Wok</ion-option>
+          <ion-option value="italian">Italian</ion-option>
+          <ion-option value="tapas">Tapas</ion-option>
+          <ion-option value="bistro">Bistro</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
