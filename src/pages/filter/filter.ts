@@ -105,30 +105,33 @@ export class FilterPage {
 
     if (this.cheap_checkbox_option){
       let list = this.restaurant_list.sort((a,b) => (a.value.price.length > b.value.price.length)? 1:(b.value.price.length< a.value.price.length)? -1:0);
-      if (localStorage.getItem('current_sorted_list') == null){
+      /*if (localStorage.getItem('current_sorted_list') == null){
         localStorage.setItem('current_sorted_list',
           JSON.stringify(list));
-      }
+      }*/
+      localStorage.setItem('current_sorted_list', JSON.stringify(list));
       this.navCtrl.push(RestaurantListPage, {restaurant_list : list});
       return;
     }
 
     if (this.fine_dining_checkbox_option){
       let list = this.restaurant_list.sort((a,b) => (b.value.price.length > a.value.price.length)? 1:(a.value.price.length< b.value.price.length)? -1:0)
-      if (localStorage.getItem('current_sorted_list') == null){
+      /*if (localStorage.getItem('current_sorted_list') == null){
         localStorage.setItem('current_sorted_list',
           JSON.stringify(list));
-      }
-      this.navCtrl.push(RestaurantListPage, {restaurant_list : list });
+      }*/
+      localStorage.setItem('current_sorted_list', JSON.stringify(list));
+      this.navCtrl.push(RestaurantListPage, {restaurant_list : list});
       return;
     }
 
     if (this.open_now_checkbox_option){
       let list = this.checkOpenNowRestaurants();
       if (localStorage.getItem('current_sorted_list') == null){
-        localStorage.setItem('current_sorted_list',
-          JSON.stringify(list));
+
       }
+      localStorage.setItem('current_sorted_list',
+        JSON.stringify(list));
       this.navCtrl.push(RestaurantListPage, {restaurant_list :list });
       return;
     }

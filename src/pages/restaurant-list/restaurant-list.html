@@ -20,6 +20,7 @@
 
 <ion-content padding>
   <div id="restaurant_list">
+    {{ sorted_restaurant_list.length}}
     <ion-list *ngFor="let restaurant of sorted_restaurant_list">
       <ion-card class="top_five_restaurants_card">
         <ion-card-title>

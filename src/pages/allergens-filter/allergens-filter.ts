@@ -59,13 +59,13 @@ export class AllergensFilterPage {
 
   }
 
-  ionViewCanLeave(){
-    this.navCtrl.setRoot(this.navCtrl.getPrevious()).then(
+  /*ionViewCanLeave(){
+    this.navCtrl.setRoot(RestaurantListPage).then(
       () => { console.log("Set root"); }
     ).catch(
       () => { console.log("NOP")}
     );
-  }
+  }*/
 
   private generateArrayWithCheckedOptions(){
     let checked_options = [];
@@ -118,6 +118,7 @@ export class AllergensFilterPage {
     let filtered_restaurant_list = [];
     let checkedOptions = this.generateArrayWithCheckedOptions();
     if (checkedOptions.length == 0) return this.restaurant_list;
+    console.log(checkedOptions.length);
     for (let restaurant of this.restaurant_list){
       if (!restaurant.value.allergens.some(r=> checkedOptions.indexOf(r) >= 0)){
         filtered_restaurant_list.push(restaurant);
@@ -132,7 +133,7 @@ export class AllergensFilterPage {
   private readAllergenValues() {
     let checked_options = [];
     checked_options = JSON.parse(localStorage.getItem('allergen_options'));
-    console.log(JSON.parse(localStorage.getItem('allergen_options')))
+    console.log(JSON.parse(localStorage.getItem('allergen_options')));
     if (checked_options.indexOf('celery') > -1){
       this.celery_checkbox_option = true;
     }

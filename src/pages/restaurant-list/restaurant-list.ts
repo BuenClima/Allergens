@@ -47,12 +47,10 @@ export class RestaurantListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RestaurantListPage');
     if (this.state == 'show'){
-      this.sorted_restaurant_list = null;
-      this.sorted_restaurant_list = this.navParams.get('restaurant_list');
-      console.log(this.sorted_restaurant_list);
-      console.log(this.restaurant_list);
+      //this.sorted_restaurant_list = null;
+      this.sorted_restaurant_list = JSON.parse(localStorage.getItem('current_sorted_list'));
+      console.log("Ion view did load show");
     } else {
       this.loadRestaurantsByCity();
     }
