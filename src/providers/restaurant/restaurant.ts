@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-
+import { DishesProvider } from "../dishes/dishes";
 
 
 @Injectable()
 export class RestaurantProvider {
 
 
-  constructor(public afDB: AngularFireDatabase) {
+  constructor(public afDB: AngularFireDatabase,
+              public dishesProvider: DishesProvider) {
   }
 
   createRestaurantsOnFirebase(){
@@ -15,6 +16,7 @@ export class RestaurantProvider {
     let i = 1;
     for (let restaurant of restaurants.restaurants){
       this.afDB.database.ref('restaurants/'+ i).set(restaurant);
+      this.dishesProvider.createDishesOnFirebase(i);
       i++;
     }
   }
@@ -39,6 +41,7 @@ export class RestaurantProvider {
     return {
       "restaurants" : [
         {
+          "id" : "1",
           "restaurantName": "Que leche",
           "rating" : 4.7,
           "reviews" : 143,
@@ -55,6 +58,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "2",
           "restaurantName": "La Perrachica",
           "rating" : 4.3,
           "reviews" : 171,
@@ -71,6 +75,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "3",
           "restaurantName": "Perinqué",
           "rating" : 4.7,
           "reviews" : 45,
@@ -87,6 +92,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "4",
           "restaurantName": "Scooter's Vegueta-Triana",
           "rating" : 4.0,
           "reviews" : 53,
@@ -103,6 +109,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "5",
           "restaurantName": "Los 5 Sentidos",
           "rating" : 4.6,
           "reviews" : 120,
@@ -119,6 +126,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "6",
           "restaurantName": "El Vasco de Vegueta",
           "rating" : 3.7,
           "reviews" : 144,
@@ -135,6 +143,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "7",
           "restaurantName": "El Rifeño",
           "rating" : 4.4,
           "reviews" : 188,
@@ -151,6 +160,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "8",
           "restaurantName": "La Vegueta de Colón",
           "rating" : 4.4,
           "reviews" : 60,
@@ -167,6 +177,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "9",
           "restaurantName": "La Taberna de El Monje",
           "rating" : 4.1,
           "reviews" : 179,
@@ -183,6 +194,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "10",
           "restaurantName": "La Hierba Luisa",
           "rating" : 4.5,
           "reviews" : 199,
@@ -199,6 +211,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "11",
           "restaurantName": "Restaurante Casa Montesdeoca",
           "rating" : 3.9,
           "reviews" : 109,
@@ -215,6 +228,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "12",
           "restaurantName": "Tasca El Canalla De Vegueta",
           "rating" : 4.1,
           "reviews" : 475,
@@ -231,6 +245,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "13",
           "restaurantName": "Bistro La Champiñoneria",
           "rating" : 4.3,
           "reviews" : 312,
@@ -247,6 +262,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "14",
           "restaurantName": "Trés Jolie",
           "rating" : 4.3,
           "reviews" : 148,
@@ -263,6 +279,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "15",
           "restaurantName": "Marsala",
           "rating" : 4.1,
           "reviews" : 128,
@@ -279,6 +296,7 @@ export class RestaurantProvider {
           "city" : "Las Palmas"
         },
         {
+          "id" : "16",
           "restaurantName": "Tasca La Piedra Vegueta",
           "rating" : 4.3,
           "reviews" : 66,

@@ -69,7 +69,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.startLocationTracker();
-    this.restaurantProvider.createRestaurantsOnFirebase();
+    //this.restaurantProvider.createRestaurantsOnFirebase();
     this.restaurantProvider.getRestaurants().then((restaurantsSnapshot) => {
       let restaurantList = Object.keys(restaurantsSnapshot).map(key => ({type: key, value: restaurantsSnapshot[key]}));
       this.restaurant_list =  restaurantList;

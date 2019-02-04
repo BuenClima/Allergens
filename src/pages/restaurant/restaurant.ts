@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {RestaurantProvider} from "../../providers/restaurant/restaurant";
-
+import { DishesProvider } from "../../providers/dishes/dishes";
 
 @IonicPage()
 @Component({
@@ -13,6 +13,10 @@ export class RestaurantPage {
   restaurant_name:any="";
   restaurant:any = {};
   restaurant_takeout:any = "";
+  restaurant_id:any;
+
+  dishes:any = "";
+  breakfastList:any = [];
 
   celery_image_url:string = 'assets/imgs/allergens/celery.png';
   crustacean_image_url:string= 'assets/imgs/allergens/crustacean.png';
@@ -28,11 +32,17 @@ export class RestaurantPage {
   soya_image_url:string = 'assets/imgs/allergens/soya.png';
   sulphur_image_url:string = 'assets/imgs/allergens/sulphur.png';
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
+  showbreakfast: boolean;
+  lunchlist: any;
+  showlunch: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public restaurantProvider: RestaurantProvider,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public dishesProvider: DishesProvider) {
     this.restaurant_name = this.navParams.get('restaurant_name');
+    this.breakfastList = [];
+    this.lunchlist = [];
   }
 
   ionViewDidLoad() {
@@ -41,18 +51,20 @@ export class RestaurantPage {
       for (let restaurant of restaurantList){
         if (restaurant.value.restaurantName.toLowerCase() == this.restaurant_name.toLowerCase()){
           this.restaurant = restaurant.value;
+          this.restaurant_id = restaurant.value.id;
           if (restaurant.value.takeOut == true){
             this.restaurant_takeout = "Yes";
           }  else {
             this.restaurant_takeout = "No";
           }
           console.log(this.restaurant);
+          this.dishes = restaurant.value.dishes;
           break;
         }
       }
     });
-
   }
+
   showInfoBubble(allergen: string) {
     const toast = this.toastCtrl.create({
       message: allergen,
@@ -63,5 +75,27 @@ export class RestaurantPage {
       closeButtonText: "Ok"
     });
     toast.present();
+  }
+
+  showBreakFasts() {
+    if (this.breakfastList.length == 0){
+      for (let dish of this.dishes){
+        if (dish.category == "breakfast"){
+          this.breakfastList.push(dish);
+        }
+      }
+    }
+    this.showbreakfast = this.showbreakfast != true;
+  }
+
+  showLunch() {
+    if (this.lunchlist.length == 0){
+      for (let dish of this.dishes){
+        if (dish.category == "lunch"){
+          this.lunchlist.push(dish);
+        }
+      }
+    }
+    this.showlunch = this.showlunch != true;
   }
 }

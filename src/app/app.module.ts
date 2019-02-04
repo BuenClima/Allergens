@@ -32,6 +32,7 @@ import { NativeStorage } from "@ionic-native/native-storage";
 
 import { MapComponent } from '../components/map/map';
 import { FilterProvider } from '../providers/filter/filter';
+import { DishesProvider } from '../providers/dishes/dishes';
 const firebaseConfig = {
   apiKey: "AIzaSyDksvJCJD1BKucYdDH4BGA13VsXOvy6j2U",
   authDomain: "allergen-8c1d4.firebaseapp.com",
@@ -85,6 +86,7 @@ const firebaseConfig = {
     Geolocation,
     NativeStorage,
     FilterProvider,
+    DishesProvider,
   ]
 })
 export class AppModule {}
