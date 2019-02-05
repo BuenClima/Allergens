@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {RestaurantProvider} from "../../providers/restaurant/restaurant";
 import { DishesProvider } from "../../providers/dishes/dishes";
+import {DishPage} from "../dish/dish";
 
 @IonicPage()
 @Component({
@@ -32,17 +33,20 @@ export class RestaurantPage {
   soya_image_url:string = 'assets/imgs/allergens/soya.png';
   sulphur_image_url:string = 'assets/imgs/allergens/sulphur.png';
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
-  showbreakfast: boolean;
+
+  showbreakfast: boolean = false;
   lunchlist: any;
-  showlunch: boolean;
+  showlunch: boolean = false;
+  dinnerList: any;
+  showdinner: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public restaurantProvider: RestaurantProvider,
-              public toastCtrl: ToastController,
-              public dishesProvider: DishesProvider) {
+              public toastCtrl: ToastController) {
     this.restaurant_name = this.navParams.get('restaurant_name');
     this.breakfastList = [];
     this.lunchlist = [];
+    this.dinnerList = [];
   }
 
   ionViewDidLoad() {
@@ -97,5 +101,20 @@ export class RestaurantPage {
       }
     }
     this.showlunch = this.showlunch != true;
+  }
+
+  showDinner() {
+    if (this.dinnerList.length == 0){
+      for (let dish of this.dishes){
+        if (dish.category == "dinner"){
+          this.dinnerList.push(dish);
+        }
+      }
+    }
+    this.showdinner = this.showdinner != true;
+  }
+
+  navigateToDish(dish) {
+    this.navCtrl.push(DishPage, {dish: dish});
   }
 }

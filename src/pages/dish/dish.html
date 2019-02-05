@@ -1,0 +1,51 @@
+<!--
+  Generated template for the DishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ dish.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="dishcontainer">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ dish.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-label>{{ dish.price }}$</ion-label>
+      <ion-card-content>
+        <div class="allergen_box">
+          <div *ngFor="let allergen of dish.allergens">
+            <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">
+            <img class="allergen_icon" [src]="crustacean_image_url" *ngIf="allergen == 'crustacean'" alt="Crustacean" (click)="showInfoBubble('Crustacean')">
+            <img class="allergen_icon" [src]="egg_image_url" *ngIf="allergen == 'egg'" alt="Egg" (click)="showInfoBubble('Egg')">
+            <img class="allergen_icon" [src]="fish_image_url" *ngIf="allergen == 'fish'" alt="Fish" (click)="showInfoBubble('Fish')">
+            <img class="allergen_icon" [src]="lupin_image_url" *ngIf="allergen == 'lupin'" alt="Lupin" (click)="showInfoBubble('Lupin')">
+            <img class="allergen_icon" [src]="milk_image_url" *ngIf="allergen == 'milk'" alt="Milk" (click)="showInfoBubble('Milk')">
+            <img class="allergen_icon" [src]="mollusc_image_url" *ngIf="allergen == 'mollusc'" alt="Mollusc" (click)="showInfoBubble('Mollusc')">
+            <img class="allergen_icon" [src]="mustard_image_url" *ngIf="allergen == 'mustard'" alt="Mustard" (click)="showInfoBubble('Mustard')">
+            <img class="allergen_icon" [src]="nuts_image_url" *ngIf="allergen == 'nuts'" alt="Nuts" (click)="showInfoBubble('Nuts')">
+            <img class="allergen_icon" [src]="peanuts_image_url" *ngIf="allergen == 'peanuts'" alt="Peanuts" (click)="showInfoBubble('Peanuts')">
+            <img class="allergen_icon" [src]="sasame_image_url" *ngIf="allergen == 'sesame'" alt="Sesame" (click)="showInfoBubble('Sesame')">
+            <img class="allergen_icon" [src]="soya_image_url" *ngIf="allergen == 'soya'" alt="Soya" (click)="showInfoBubble('Soya')">
+            <img class="allergen_icon" [src]="sulphur_image_url" *ngIf="allergen == 'sulphur'" alt="Sulphur" (click)="showInfoBubble('Sulphur')">
+            <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)="showInfoBubble('Wheat')">
+          </div>
+        </div>
+        <ion-label>KCalories : {{ dish.calories }}</ion-label>
+        <img  [src]="dish.imageURL"/>
+        <ion-label> Ingredients : </ion-label>
+        <ion-list *ngFor="let ingredient of dish.ingredients">
+          <ion-item style="display: inline-block;">{{ ingredient }}</ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

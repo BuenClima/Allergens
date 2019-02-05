@@ -33,6 +33,7 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { MapComponent } from '../components/map/map';
 import { FilterProvider } from '../providers/filter/filter';
 import { DishesProvider } from '../providers/dishes/dishes';
+import {DishPage} from "../pages/dish/dish";
 const firebaseConfig = {
   apiKey: "AIzaSyDksvJCJD1BKucYdDH4BGA13VsXOvy6j2U",
   authDomain: "allergen-8c1d4.firebaseapp.com",
@@ -52,7 +53,8 @@ const firebaseConfig = {
     AllergensFilterPage,
     FilterPage,
     MapComponent,
-    MapPage
+    MapPage,
+    DishPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ const firebaseConfig = {
     RestaurantListPage,
     AllergensFilterPage,
     FilterPage,
-    MapPage
+    MapPage,
+    DishPage
   ],
   providers: [
     StatusBar,
