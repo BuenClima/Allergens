@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from  'angularfire2/auth';
 import { RestaurantProvider } from '../providers/restaurant/restaurant';
 import { HttpClientModule } from "@angular/common/http";
 
@@ -33,7 +34,11 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { MapComponent } from '../components/map/map';
 import { FilterProvider } from '../providers/filter/filter';
 import { DishesProvider } from '../providers/dishes/dishes';
-import {DishPage} from "../pages/dish/dish";
+import { DishPage } from "../pages/dish/dish";
+import { ProfilePage } from "../pages/profile/profile";
+
+import { AuthProvider } from '../providers/auth/auth';
+import { ProfileProvider } from '../providers/profile/profile';
 const firebaseConfig = {
   apiKey: "AIzaSyDksvJCJD1BKucYdDH4BGA13VsXOvy6j2U",
   authDomain: "allergen-8c1d4.firebaseapp.com",
@@ -54,7 +59,8 @@ const firebaseConfig = {
     FilterPage,
     MapComponent,
     MapPage,
-    DishPage
+    DishPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig,'allergen'),
     AngularFireDatabaseModule,
     HttpClientModule,
-    StarRatingModule
+    StarRatingModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,7 +82,8 @@ const firebaseConfig = {
     AllergensFilterPage,
     FilterPage,
     MapPage,
-    DishPage
+    DishPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
@@ -90,6 +98,9 @@ const firebaseConfig = {
     NativeStorage,
     FilterProvider,
     DishesProvider,
+    AuthProvider,
+    ProfileProvider,
+    ProfileProvider,
   ]
 })
 export class AppModule {}
