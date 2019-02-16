@@ -13,27 +13,18 @@ export class ProfilePage {
   user: any;
   credentials: any;
   profile:any;
-
-  celery_image_url:string = 'assets/imgs/allergens/celery.png';
-  crustacean_image_url:string= 'assets/imgs/allergens/crustacean.png';
-  egg_image_url:string = 'assets/imgs/allergens/egg.png';
-  fish_image_url:string = 'assets/imgs/allergens/fish.png';
-  lupin_image_url:string = 'assets/imgs/allergens/lupin.png';
-  milk_image_url:string = 'assets/imgs/allergens/milk.png';
-  mollusc_image_url:string = 'assets/imgs/allergens/mollusc.png';
-  mustard_image_url:string = 'assets/imgs/allergens/mustard.png';
-  nuts_image_url:string = 'assets/imgs/allergens/nuts.png';
-  peanuts_image_url:string = 'assets/imgs/allergens/peanuts.png';
-  sasame_image_url:string = 'assets/imgs/allergens/sesame.png';
-  soya_image_url:string = 'assets/imgs/allergens/soya.png';
-  sulphur_image_url:string = 'assets/imgs/allergens/sulphur.png';
-  wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
+  token:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public auth: AuthProvider, public alertCtrl: AlertController,
               public profileProvider: ProfileProvider) {
     this.credentials = {email: '', password: ''};
     this.profile = {created: false, name:'', allergens: {}, restaurantNotifications: ''};
+    if (localStorage.getItem("token")){
+      this.token = localStorage.getItem("token");
+    } else {
+      this.token = "";
+    }
   }
 
   ionViewDidLoad() {

@@ -39,6 +39,9 @@ import { ProfilePage } from "../pages/profile/profile";
 
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
+import { NotificationsProvider } from '../providers/notifications/notifications';
+import {AngularFireMessagingModule} from 'angularfire2/messaging';
+import 'firebase/messaging';
 const firebaseConfig = {
   apiKey: "AIzaSyDksvJCJD1BKucYdDH4BGA13VsXOvy6j2U",
   authDomain: "allergen-8c1d4.firebaseapp.com",
@@ -70,7 +73,8 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
     HttpClientModule,
     StarRatingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireMessagingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,6 +105,7 @@ const firebaseConfig = {
     AuthProvider,
     ProfileProvider,
     ProfileProvider,
+    NotificationsProvider,
   ]
 })
 export class AppModule {}

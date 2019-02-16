@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BackgroundGeolocation, BackgroundGeolocationConfig} from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import {filter} from "rxjs/operators";
 
 
 
@@ -47,7 +48,7 @@ export class LocationTrackerProvider {
       enableHighAccuracy: true
     };
 
-    this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
+    this.watch = this.geolocation.watchPosition(options).pipe(filter((p: any) => p.code === undefined)).subscribe((position: Geoposition) => {
       console.log(position);
 
       this.lat = position.coords.latitude;
