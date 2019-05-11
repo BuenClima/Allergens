@@ -31,9 +31,12 @@ export class DishPage {
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
 
   dish:any;
+  restaurant_name: any;
+  show: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.dish = navParams.get('dish');
+    this.restaurant_name = navParams.get('restaurant_name');
   }
 
   ionViewDidLoad() {
@@ -41,4 +44,7 @@ export class DishPage {
   }
 
 
+  showIngredients() {
+    this.show = this.show != true;
+  }
 }

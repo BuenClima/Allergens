@@ -1,8 +1,13 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>Filter</ion-title>
-    <button (click)="applyFilter()" class="apply_button" ion-button color="secondary">Apply</button>
+    <button (click)="applyFilter()" class="apply_button" ion-button color="dark" outline>Apply</button>
+    <ion-buttons>
+      <button ion-button (click)="goHome()">
+        <ion-icon name="arrow-back" style="float: left;"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,23 +22,23 @@
         <ion-label>MostPopular</ion-label>
         <ion-item>
             <ion-label>Cheap</ion-label>
-            <ion-checkbox class="" [(ngModel)]="cheap_checkbox_option"></ion-checkbox>
+            <ion-checkbox color="secondary" class="" [(ngModel)]="cheap_checkbox_option"></ion-checkbox>
           </ion-item>
           <ion-item>
             <ion-label>Mid-range</ion-label>
-            <ion-checkbox class="" [(ngModel)]="mid_range_checkbox_option"></ion-checkbox>
+            <ion-checkbox color="secondary" class="" [(ngModel)]="mid_range_checkbox_option"></ion-checkbox>
           </ion-item>
           <ion-item>
             <ion-label>Fine Dining</ion-label>
-            <ion-checkbox class="" [(ngModel)]="fine_dining_checkbox_option"></ion-checkbox>
+            <ion-checkbox color="secondary" class="" [(ngModel)]="fine_dining_checkbox_option"></ion-checkbox>
           </ion-item>
           <ion-item>
             <ion-label>Open now</ion-label>
-            <ion-checkbox class="" [(ngModel)]="open_now_checkbox_option"></ion-checkbox>
+            <ion-checkbox color="secondary" class="" [(ngModel)]="open_now_checkbox_option"></ion-checkbox>
           </ion-item>
           <ion-item>
             <ion-label>Take out</ion-label>
-            <ion-checkbox class="" [(ngModel)]="take_out_checkbox_option"></ion-checkbox>
+            <ion-checkbox color="secondary" class="" [(ngModel)]="take_out_checkbox_option"></ion-checkbox>
           </ion-item>
       </ion-item-group>
       <ion-item>

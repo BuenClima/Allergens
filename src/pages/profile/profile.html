@@ -6,8 +6,16 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>profile</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title class="nav-title" *ngIf="user == null">Login</ion-title>
+    <ion-title class="nav-title" *ngIf="user != null">Profile</ion-title>
+    <ion-buttons>
+      <button ion-button (click)="goHome()" class="back-button-custom">
+        <ion-icon name="arrow-back" style="float: left;"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
   </ion-navbar>
 
 </ion-header>
@@ -17,6 +25,7 @@
 
   <div *ngIf="user == null">
     <div class="login-box">
+      <ion-label class="login-form">Login form</ion-label>
       <ion-list>
         <form>
           <ion-row>
@@ -35,10 +44,10 @@
 
           <ion-row>
             <ion-col class="signup-col">
-              <button ion-button (click)="login()" type="submit" color="primary" class="submit-btn" full>
+              <button ion-button (click)="login()" type="submit" color="primary" class="submit-btn custombtn">
                 Login</button>
-              <button ion-button (click)="signin()" type="submit" color="secondary" class="signin-btn" full>Sign in</button>
-              <button ion-button round (click)="recoverPassword()" color="danger" class="register-btn" block clear>Forgot password?</button>
+              <button ion-button (click)="signin()" type="submit" color="secondary" class="signin-btn custombtn">Sign in</button>
+              <button ion-button round (click)="recoverPassword()"  color="dark" class="register-btn recover"  block>Forgot password?</button>
             </ion-col>
           </ion-row>
 
@@ -76,7 +85,7 @@
                 <ion-option value="wheat">Wheat</ion-option>
               </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item style="margin-top:3%;">
               <ion-label>Restaurants notifications</ion-label>
               <ion-checkbox [(ngModel)]="profile.restaurantNotifications" name="restaurantNotifications" class="checkbox-ios-dark checkbox-md-dark
           checkbox-wp-dark"></ion-checkbox>
@@ -86,10 +95,10 @@
       </ion-row>
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button round (click)="updateUserProfile()" full class="submit-btn">Update</button>
+          <button ion-button block (click)="updateUserProfile()"  class="submit-btn custombtn2">Update</button>
         </ion-col>
       </ion-row>
     </form>
-    <button ion-button block (click)="logout()" color="danger" class="logout-btn">Log Out</button>
+    <button ion-button block (click)="logout()" color="danger" class="logout-btn custombtn">Log Out</button>
   </div>
 </ion-content>

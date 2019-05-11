@@ -1,12 +1,25 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{restaurant_name}}</ion-title>
+  <ion-navbar hideBackButton>
+
+    <ion-title style="position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 90px 1px;
+  width: 100%;
+  height: 100%;
+  text-align: center;">{{restaurant_name}}</ion-title>
+
+    <ion-buttons>
+      <button ion-button (click)="goHome()" style="float: left;">
+        <ion-icon name="arrow-back" style="float: left;"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  padding class="restaurant-content">
   <div id="restaurant_info_container">
     <div id="imgcontainer">
     <img id="restaurant_image" [src]="restaurant.imageUrl"/>
@@ -14,10 +27,10 @@
       <ionic3-star-rating
         activeIcon="ios-star"
         defaultIcon="ios-star-outline"
-        activeColor="#488aff"
-        defaultColor="#f4f4f4"
+        activeColor="#E7C251"
+        defaultColor="#E7C251"
         readonly="true"
-        [rating]= restaurant.rating >
+        rating= "{{ restaurant.rating }}" >
       </ionic3-star-rating>
       <div id="rating">
         {{ restaurant.rating }}/5
@@ -25,10 +38,10 @@
       </div>
     </div>
     </div>
-    <div>
+    <div id="container-list">
       <ion-list id="infolist">
         <ion-item>
-          <ion-label text-wrap>Cuisine : {{restaurant.cuisineType}}</ion-label>
+          <ion-label text-wrap>{{restaurant.cuisineType}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label text-wrap>Open time : {{restaurant.openTime}}</ion-label>
@@ -37,12 +50,9 @@
           <ion-label text-wrap>Close Time : {{ restaurant.closeTime}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label text-wrap>Take out : {{restaurant_takeout }}</ion-label>
+          <ion-label text-wrap>Take away : {{restaurant_takeout }}</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label text-wrap>City : {{ restaurant.city }}</ion-label>
-        </ion-item>
-        <ion-item>
+        <!--<ion-item>
           <div class="allergen_box">
             <div *ngFor="let allergen of restaurant.allergens">
               <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">
@@ -61,23 +71,36 @@
               <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)="showInfoBubble('Wheat')">
             </div>
           </div>
-        </ion-item>
+        </ion-item>-->
       </ion-list>
     </div>
+
   </div>
 
 
 
   <div id="dishes_container" style="float: left; clear: both;">
-    <button ion-button (click)="showBreakFasts()"> Breakfast
-      <ion-icon name="add-circle"></ion-icon>
+    <div class="menu-container">
+    <button ion-button (click)="showBreakFasts()" class="but"> Breakfast
+      <ion-icon *ngIf="!showbreakfast" name="arrow-dropup" ></ion-icon>
+      <ion-icon *ngIf="showbreakfast" name="arrow-dropdown" ></ion-icon>
     </button>
+    <button ion-button (click)="showLunch()" class="but"> Lunch
+      <ion-icon *ngIf="!showlunch" name="arrow-dropup" ></ion-icon>
+      <ion-icon *ngIf="showlunch" name="arrow-dropdown" ></ion-icon>
+    </button>
+    <button ion-button (click)="showDinner()" class="but"> Dinner
+      <ion-icon *ngIf="!showdinner" name="arrow-dropup" ></ion-icon>
+      <ion-icon *ngIf="showdinner" name="arrow-dropdown" ></ion-icon>
+    </button>
+    </div>
     <div class="breakfastcontainer" *ngIf="showbreakfast == true">
       <ion-list *ngFor="let dish of breakfastList">
-        <ion-card>
-          <ion-card-title (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
-          <ion-label>{{ dish.price }}$</ion-label>
+        <ion-card class="show-dish">
+          <ion-card-title class="dish-title" (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
+          <ion-label class="dish-price">{{ dish.price }}$</ion-label>
           <ion-card-content>
+            <img  class="dish-image" [src]="dish.imageURL"/>
             <div class="allergen_box">
               <div *ngFor="let allergen of dish.allergens">
                 <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">
@@ -96,8 +119,7 @@
                 <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)="showInfoBubble('Wheat')">
               </div>
             </div>
-            <ion-label>KCalories : {{ dish.calories }}</ion-label>
-            <img  [src]="dish.imageURL"/>
+
             <!--<ion-list *ngFor="let ingredient of dish.ingredients">
               <ion-item>{{ ingredient }}</ion-item>
             </ion-list>-->
@@ -106,16 +128,15 @@
       </ion-list>
     </div>
 
-    <button ion-button (click)="showLunch()"> Lunch
-      <ion-icon name="add-circle"></ion-icon>
-    </button>
+
 
     <div class="lunchcontainer" *ngIf="showlunch == true">
       <ion-list *ngFor="let dish of lunchlist">
-        <ion-card>
-          <ion-card-title (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
-          <ion-label>{{ dish.price }}$</ion-label>
+        <ion-card class="show-dish">
+          <ion-card-title class="dish-title" (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
+          <ion-label class="dish-price">{{ dish.price }}$</ion-label>
           <ion-card-content>
+            <img  class="dish-image" [src]="dish.imageURL"/>
             <div class="allergen_box">
               <div *ngFor="let allergen of dish.allergens">
                 <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">
@@ -134,8 +155,6 @@
                 <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)="showInfoBubble('Wheat')">
               </div>
             </div>
-            <ion-label>KCalories : {{ dish.calories }}</ion-label>
-            <img  [src]="dish.imageURL"/>
             <!--<ion-list *ngFor="let ingredient of dish.ingredients">
               <ion-item>{{ ingredient }}</ion-item>
             </ion-list>-->
@@ -145,16 +164,15 @@
     </div>
   </div>
 
-  <button ion-button (click)="showDinner()"> Dinner
-    <ion-icon name="add-circle"></ion-icon>
-  </button>
+
 
   <div class="dinnercontainer" *ngIf="showdinner== true">
     <ion-list *ngFor="let dish of dinnerList">
-      <ion-card>
-        <ion-card-title (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
-        <ion-label>{{ dish.price }}$</ion-label>
+      <ion-card class="show-dish">
+        <ion-card-title class="dish-title" (click)="navigateToDish(dish)">{{ dish.name }}</ion-card-title>
+        <ion-label class="dish-price">{{ dish.price }}$</ion-label>
         <ion-card-content>
+          <img  class="dish-image" [src]="dish.imageURL"/>
           <div class="allergen_box">
             <div *ngFor="let allergen of dish.allergens">
               <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">
@@ -173,13 +191,18 @@
               <img class="allergen_icon" [src]="wheat_image_url" *ngIf="allergen == 'wheat'" alt="Wheat" (click)="showInfoBubble('Wheat')">
             </div>
           </div>
-          <ion-label>KCalories : {{ dish.calories }}</ion-label>
-          <img  [src]="dish.imageURL"/>
+
           <!--<ion-list *ngFor="let ingredient of dish.ingredients">
             <ion-item>{{ ingredient }}</ion-item>
           </ion-list>-->
         </ion-card-content>
       </ion-card>
     </ion-list>
+  </div>
+
+  <div style="margin-left:5%;height: 100%; width: 100%; clear: both;">
+    <h1 style="margin-left: 35%;">Map</h1>
+    <!--<app-custom-map [position]="{'latitude': restaurant.latitude, 'longitude': restaurant.longitude}"></app-custom-map>-->
+    <app-custom-map></app-custom-map>
   </div>
 </ion-content>

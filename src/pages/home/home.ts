@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {NavController, ToastController} from 'ionic-angular';
+import {ModalController, NavController, ToastController} from 'ionic-angular';
 import { RestaurantProvider } from "../../providers/restaurant/restaurant";
 import { RestaurantPage } from "../restaurant/restaurant";
 import {FormControl} from "@angular/forms";
 import { LocationTrackerProvider } from "../../providers/location-tracker/location-tracker";
 import { Platform} from "ionic-angular";
 import {Geolocation, Geoposition} from "@ionic-native/geolocation";
+import {SettingModalPage} from "../setting-modal/setting-modal";
 
 import {
   GoogleMaps,
@@ -52,24 +53,29 @@ export class HomePage {
 
   showBubble:boolean = false;
   bubbletext: string;
+  private SettingsModal: any;
+  private open: boolean;
 
   constructor(public navCtrl: NavController, public restaurantProvider: RestaurantProvider,
               public locationTracker: LocationTrackerProvider, public platform: Platform,
-              public geolocation: Geolocation, public toastCtrl: ToastController) {
+              public geolocation: Geolocation, public toastCtrl: ToastController,
+              public modalCtrl: ModalController) {
     this.searchFormControl = new FormControl();
+    localStorage.setItem('open', "false")
 
   }
 
   ionViewWillEnter(){
     localStorage.removeItem('current_sorted_list');
     localStorage.removeItem('allergen_options');
-    localStorage.removeItem('restaurant_list');
+    //localStorage.removeItem('restaurant_list');
     this.searchTerm = "";
   }
 
+
   ionViewDidLoad(){
-    this.startLocationTracker();
-    //this.restaurantProvider.createRestaurantsOnFirebase();
+    //this.startLocationTracker();
+    this.restaurantProvider.createRestaurantsOnFirebase();
     this.restaurantProvider.getRestaurants().then((restaurantsSnapshot) => {
       let restaurantList = Object.keys(restaurantsSnapshot).map(key => ({type: key, value: restaurantsSnapshot[key]}));
       this.restaurant_list =  restaurantList;
@@ -78,7 +84,7 @@ export class HomePage {
       localStorage.setItem('restaurant_list',JSON.stringify(this.restaurant_list));
     });
     this.platform.ready().then(()=>{
-      this.getPosition();
+      //this.getPosition();
       this.loadMap();
     });
   }
@@ -132,5 +138,15 @@ export class HomePage {
       cssClass: "test"
     });
     toast.present();
+  }
+
+  clickOnSettings() {
+    console.log("Click");
+    if (localStorage.getItem('open') == "false"){
+      this.SettingsModal = this.modalCtrl.create(SettingModalPage,{},{cssClass: "settings-modal"});
+      this.SettingsModal.present();
+      localStorage.setItem('open', "true")
+
+    }
   }
 }

@@ -1,81 +1,123 @@
 page-home {
-  .search_input_container{
+  .search_input_container {
     float: left;
   }
 
-  .search_input_container input{
+  .search_input_container input {
     border-radius: 5%;
     font-size: 14px;
   }
 
-  .search_button_container button{
+  .search_button_container button {
     background-color: #ffffff;
   }
 
-  .search_button_container button ion-icon{
+  .search_button_container button ion-icon {
     font-size: 25px;
   }
 
-  #search_box_title{
+  #search_box_title {
     font-size: 18px;
     margin-right: 2%;
   }
 
-  #search_box_form{
+  #search_box_form {
   }
 
-  .top_five_restaurant_image{
-    height: 100px;
-    width: 100px;
-    margin-bottom: 5%;
-    float: right;
-    margin-top: 0 !important;
+  .top_five_restaurant_image {
+    height: 125px;
+    width: 150px;
+   /* margin-bottom: 5%;*/
+    clear: both;
+    margin-top: 3% !important;
+    border-radius:10%;
+    margin-bottom: 0 !important;
+    margin-left: 25%;
   }
 
   .rating_box {
-    float: left;
-    width: 60%;
+    clear: both;
+    //width: 45%;
     font-size: 1.5em;
+    margin-left: 20%;
     //border:1px solid black;
+
   }
+
 
   .top_five_restaurants_card ion-card-title {
     margin-left: 3%;
     margin-bottom: -5% !important;
   }
 
-  #map-canvas{
+  #map-canvas {
     margin-left: 5%;
     margin-top: 5%;
     margin-bottom: 5%;
   }
 
-  .image_container{
+  .image_container {
   }
 
-  .allergen_icon{
-    width: 15%;
-    height: 15%;
+  .allergen_icon {
+    width: 13%;
+    height: 13%;
     margin-left: 5%;
     float: left;
     margin-top: 2%;
   }
 
-  .allergen_box{
+  .allergen_box {
     display: inline-block !important;
     width: 100%;
   }
 
-  .info_windows_icons{
+  .info_windows_icons {
     width: 15px;
     height: 15px;
   }
 
-  .toast-container{
+  .toast-container {
     text-align: center;
   }
-}
-.test{
-  width: 50%;
-  border-radius: 50%;
+
+  .test {
+    width: 50%;
+    border-radius: 50%;
+  }
+
+  .settings-icon {
+    font-size: 45px;
+    float: right;
+    margin-top: -15%;
+    margin-right: 5%;
+  }
+
+  .settings-icon:hover {
+    font-size: 40px;
+  }
+
+  .home-content {
+    /*background-image: url('../../assets/imgs/wheat-background.jpg');
+    background-size: cover;
+    position: relative;
+    display: block;*/
+  }
+
+  .top_five_restaurants_card {
+    //background-color: #f2e2dc;
+    color: #591902;
+    /*background-color: #EFE9EB;*/
+    background-color: rgba(239,233,235,0.9);
+    border-radius: 10%;
+  }
+
+  .searchbar-inpuut {
+    background: #FFF !important;
+    border-radius: 30px !important;
+    height: 40px !important;
+    max-width: 400px;
+    font-size: 1.25em !important;
+    border: 1px solid transparent;
+  }
 }

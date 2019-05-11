@@ -39,6 +39,17 @@ import { ProfilePage } from "../pages/profile/profile";
 
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
+import { SettingModalPage } from "../pages/setting-modal/setting-modal";
+import {AllergensFilterPageModule} from "../pages/allergens-filter/allergens-filter.module";
+import {DishPageModule} from "../pages/dish/dish.module";
+import {FilterPageModule} from "../pages/filter/filter.module";
+import {MapPageModule} from "../pages/map/map.module";
+import {ProfilePageModule} from "../pages/profile/profile.module";
+import {RestaurantPageModule} from "../pages/restaurant/restaurant.module";
+import {RestaurantListPageModule} from "../pages/restaurant-list/restaurant-list.module";
+import {ComponentsModule} from "../components/components.module";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDksvJCJD1BKucYdDH4BGA13VsXOvy6j2U",
   authDomain: "allergen-8c1d4.firebaseapp.com",
@@ -53,24 +64,34 @@ const firebaseConfig = {
     MyApp,
     HomePage,
     TabsPage,
-    RestaurantPage,
-    RestaurantListPage,
-    AllergensFilterPage,
-    FilterPage,
-    MapComponent,
-    MapPage,
-    DishPage,
-    ProfilePage
+    //RestaurantPage,
+    //RestaurantListPage,
+    //AllergensFilterPage,
+    //FilterPage,
+    //MapComponent,
+    //MapPage,
+    //DishPage,
+    //ProfilePage,
+    SettingModalPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig,'allergen'),
+    AngularFireModule.initializeApp(firebaseConfig, 'allergen'),
     AngularFireDatabaseModule,
     HttpClientModule,
     StarRatingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AllergensFilterPageModule,
+    DishPageModule,
+    FilterPageModule,
+    MapPageModule,
+    ProfilePageModule,
+    RestaurantPageModule,
+    RestaurantListPageModule,
+    ComponentsModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -83,7 +104,11 @@ const firebaseConfig = {
     FilterPage,
     MapPage,
     DishPage,
-    ProfilePage
+    ProfilePage,
+    SettingModalPage
+  ],
+  exports: [
+    TabsPage
   ],
   providers: [
     StatusBar,

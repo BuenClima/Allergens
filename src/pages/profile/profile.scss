@@ -1,3 +1,36 @@
 page-profile {
+  .back-button-custom{
+    float: left;
+  }
 
+  .nav-title{
+    margin-right: 33%;
+    float: right;
+  }
+
+  .custombtn{
+    width: 78%;
+    margin-left: 11%;
+  }
+
+  .recover{
+    font-weight: bold;
+    width: 43%;
+    margin-left: 29%;
+  }
+
+  .login-form{
+    text-align:center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .custombtn2{
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  ion-content{
+    background-image: url('../../assets/imgs/wheat-background.jpg');
+    background-size: cover;
+  }
 }

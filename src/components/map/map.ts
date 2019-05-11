@@ -12,20 +12,21 @@ import {RestaurantPage} from "../../pages/restaurant/restaurant";
 const browserMapsAPIKey = 'AIzaSyBWjg2YgCConFzw59sqUi34nsnLNygVEZU';
 
 @Component({
-  selector: 'custom-map',
+  selector: 'app-custom-map',
   templateUrl: 'map.html'
 })
 export class MapComponent {
 
   map: GoogleMap;
   @Input('position')
-  position:any = null;
+  position:any;
 
   // @Output('restaurant_name')
   // restaurant_name:EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public navCtrl: NavController) {
     console.log("OK");
+    console.log(this.position);
   }
 
   ngAfterViewInit(){
@@ -38,12 +39,12 @@ export class MapComponent {
       'API_KEY_FOR_BROWSER_RELEASE': browserMapsAPIKey,
       'API_KEY_FOR_BROWSER_DEBUG': ''
     });
-
+    Environment.setBackgroundColor("#EFEFEF");
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat: this.position != null? this.position.lat:28.1042,
-          lng: this.position != null? this.position.lng:-15.41698
+          lat: this.position != null? Number(this.position.lat):28.1042,
+          lng: this.position != null? Number(this.position.lng):-15.41698
         },
         zoom: 18,
         tilt: 30

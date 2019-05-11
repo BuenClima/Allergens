@@ -1,9 +1,67 @@
 page-dish {
   .allergen_icon{
-    width: 15%;
-    height: 15%;
+    width: 13%;
+    height: 13%;
     margin-left: 5%;
     float: left;
     margin-top: 2%;
   }
+  
+  .dish-title{
+    float: left;
+    margin-left: 2%;
+    margin-top: -5%;
+  }
+
+  .dish-price{
+    float: right;
+    margin-top: -3%;
+  }
+
+  .dish-image{
+    height: 180px;
+    width: 250px;
+    margin-left: 5%;
+  }
+
+  .dish-calories{
+    clear: both;
+    margin-top: 20%;
+    margin-left: 5%;
+  }
+
+  .allergen_box{
+    margin-top: 1%;
+  }
+
+  .but{
+    margin-left: 5%;
+  }
+
+  .menu.menu-left, .list a {
+    border-color: transparent;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .menu.menu-left, .list img {
+    float: left;
+    vertical-align: middle;
+  }
+
+  .menu.menu-left, .list h2 {
+    display: inline-block;
+  }
+
+  ion-content{
+    background-image: url('../../assets/imgs/wheat-background.jpg');
+    background-size: cover;
+  }
+  .card {
+  //background-color: #f2e2dc;
+  color: #591902;
+  /*background-color: #EFE9EB;*/
+  background-color: rgba(239,233,235,0.9);
+  border-radius: 2%;
+}
 }

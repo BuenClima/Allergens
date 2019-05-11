@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ToastController, ViewController} from 'ionic-angular';
 import { RestaurantProvider } from "../../providers/restaurant/restaurant";
 import {RestaurantPage} from "../restaurant/restaurant";
 import {AllergensFilterPage} from "../allergens-filter/allergens-filter";
 import {NativeStorage} from "@ionic-native/native-storage";
 import {FilterPage} from "../filter/filter";
 import {MapPage} from "../map/map";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -30,13 +31,15 @@ export class RestaurantListPage {
   soya_image_url:string = 'assets/imgs/allergens/soya.png';
   sulphur_image_url:string = 'assets/imgs/allergens/sulphur.png';
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
-
+  filters:any;
   state:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public restaurantProvider: RestaurantProvider,
-              public storage: NativeStorage, public toastCtrl: ToastController) {
+              public storage: NativeStorage, public toastCtrl: ToastController,
+              public viewCtrl: ViewController,
+              public platform: Platform) {
     this.searchTerm = navParams.get('searchTerm');
     this.sorted_restaurant_list = [];
     if (this.navParams.get('restaurant_list')){
@@ -47,6 +50,10 @@ export class RestaurantListPage {
   }
 
   ionViewDidLoad() {
+    this.filters = JSON.parse(localStorage.getItem('allergen_options'));
+    if (this.filters == null || this.filters.length < 1){
+      this.filters = null;
+    }
     if (this.state == 'show'){
       //this.sorted_restaurant_list = null;
       this.sorted_restaurant_list = JSON.parse(localStorage.getItem('current_sorted_list'));
@@ -76,14 +83,14 @@ export class RestaurantListPage {
 
   navigateToAllergensFilterPage() {
     if (this.state == 'show'){
-      this.navCtrl.push(AllergensFilterPage,{restaurant_list: JSON.parse(localStorage.getItem('restaurant_list'))});
+      this.navCtrl.push(AllergensFilterPage,{restaurant_list: JSON.parse(localStorage.getItem('restaurant_list')), 'state' : true});
     } else {
-      this.navCtrl.push(AllergensFilterPage,{restaurant_list: this.restaurant_list});
+      this.navCtrl.push(AllergensFilterPage,{restaurant_list: this.restaurant_list, 'state' : true});
     }
   }
 
   navigateToFilterPage() {
-    this.navCtrl.push(FilterPage);
+    this.navCtrl.push(FilterPage, {'state' : true});
   }
 
   navigateToMaps() {
@@ -100,5 +107,23 @@ export class RestaurantListPage {
       closeButtonText: "Ok"
     });
     toast.present();
+  }
+
+  goHome() {
+    this.viewCtrl.dismiss().then(() =>
+      {
+        this.navCtrl.popToRoot()
+      }
+    ).catch( () =>
+      {
+        this.platform.exitApp();
+      }
+    );
+  }
+
+  clear() {
+    localStorage.setItem('current_sorted_list', (localStorage.getItem('restaurant_list')));
+    localStorage.removeItem('allergen_options');
+    this.ionViewDidLoad();
   }
 }

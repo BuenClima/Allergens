@@ -89,7 +89,7 @@ export class DishesProvider {
                 "buttermilk",
                 "canola oil"
               ],
-              "name" : "Golden Buttermilk Waffles",
+              "name" : "Waffles",
               "price" : 3.99,
               "imageURL" : "https://www.tasteofhome.com/wp-content/uploads/2018/05/Golden-Buttermilk-Waffles_EXPS_BMZ17_23050_D09_30_7b-696x696.jpg"
             },

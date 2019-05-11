@@ -14,3 +14,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.settings-modal {
+  height: 50%!important;
+  width: 65%!important;
+  margin-left: 26.5%!important;
+  margin-top: 15%!important;
+}
+
+.searchbar-input {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+
+

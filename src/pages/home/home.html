@@ -1,40 +1,44 @@
-<ion-content padding>
-  <div id="search_box_container">
+<ion-content padding class="home-content">
+  <div id="search_box_container" style="width: 75%; margin-left: 5%;box-shadow: none; border: none">
     <ion-searchbar [(ngModel)]="searchTerm"
                    (ionInput)="onSearchInput()"
-                   [showCancelButton]=true
-                   (ionCancel)="onCancelInput()"
-                    [debounce]="500"
+                   [showCancelButton]=false
+                   [debounce]="500"
                    [placeholder]= "placeholder_search_bar"
-                  >
+                  [animated]="true"
+                  class="searchbar-inpuut">
     </ion-searchbar>
   </div>
-<!--  <custom-map></custom-map>-->
+  <ion-icon name="ios-settings-outline" (click)="clickOnSettings()" class="settings-icon"></ion-icon>
+  <app-custom-map></app-custom-map>
+  <!--<div id="map-canvas" style="width: 90%; height: 50%; border: 1px solid black;"></div>-->
   <div id="top_restaurants_container">
-    <h3>Top 5# restaurants in your city</h3>
+    <h3 style="color: #000000;">Top 5# restaurants in your city</h3>
     <div id="restaurant_list">
       <ion-list *ngFor="let restaurant of restaurant_list_sorted">
         <ion-card class="top_five_restaurants_card">
-          <ion-card-title>
-            <a (click)="goToRestaurantDishes(restaurant.value.restaurantName, restaurant.type)">{{ restaurant.value.restaurantName }}</a>
+          <ion-card-title style="text-align: left;">
+            <a style="color: #000000;margin-left: 2%;" (click)="goToRestaurantDishes(restaurant.value.restaurantName, restaurant.type)">{{ restaurant.value.restaurantName }}</a>
           </ion-card-title>
           <ion-card-content>
+            <div class="image_container">
+              <img [src]="restaurant.value.imageUrl" class="top_five_restaurant_image">
+            </div>
             <div class="rating_box">
               <ionic3-star-rating
                 activeIcon="ios-star"
                 defaultIcon="ios-star-outline"
-                activeColor="#488aff"
-                defaultColor="#f4f4f4"
+                activeColor="#E7C251"
+                defaultColor="#E7C251"
                 readonly="true"
-                [rating]= restaurant.value.rating >
+                rating= "{{ restaurant.value.rating }}">
               </ionic3-star-rating>
-              {{ restaurant.value.rating }}/5 <br style="margin-top: 5%;">
+              <div style="color: #000000; font-size: 15px; margin-left: 10%;">{{ restaurant.value.rating }}/5 - <!--<br style="margin-top: 5%;">-->
               {{ restaurant.value.reviews }} Reviews
+              </div>
             </div>
 
-            <div class="image_container">
-            <img [src]="restaurant.value.imageUrl" class="top_five_restaurant_image">
-            </div>
+
             <div class="allergen_box">
               <div *ngFor="let allergen of restaurant.value.allergens">
               <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)='showInfoBubble("Celery")'>

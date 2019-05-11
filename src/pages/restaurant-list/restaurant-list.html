@@ -6,42 +6,70 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title style="float: left;">Restaurants</ion-title>
-
+  <ion-navbar hideBackButton>
+    <ion-title class="nav-title">Restaurants</ion-title>
+    <ion-buttons>
+      <button ion-button (click)="goHome()" class="back-button-custom">
+        <ion-icon name="arrow-back" style="float: left;"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
   <div style="float: right;">
-    <button id="allergens" (click)="navigateToAllergensFilterPage()" >Allergens</button>
+  <!--  <button id="allergens" (click)="navigateToAllergensFilterPage()" >Allergens</button>
     <button id="filters" (click)="navigateToFilterPage()" >Filters</button>
     <button id="maps" (click)="navigateToMaps()">Maps</button>
+ -->
+    <ion-fab top right #fab1>
+      <button ion-fab mini color="light"><ion-icon name="arrow-dropdown"></ion-icon></button>
+      <ion-fab-list>
+        <button  ion-fab (click)="navigateToAllergensFilterPage()"><span><ion-icon name="md-restaurant"></ion-icon></span></button>
+        <button ion-fab (click)="navigateToFilterPage()"><span><ion-icon name="md-menu"></ion-icon></span></button>
+      </ion-fab-list>
+    </ion-fab>
   </div>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-content">
+  <!--
+  <ion-card  class="md-card-bg">
+    <img src="../../assets/imgs/wheat-background.jpg">
+    <h2 class="md-card-title mbsc-align-center">Las Vegas</h2>
+    <h5 class="md-card-subtitle mbsc-align-center mbsc-bold">63 apartments available</h5>
+  </ion-card>
+  -->
+
   <div id="restaurant_list">
-    {{ sorted_restaurant_list.length}}
+    <!--{{ sorted_restaurant_list.length}}-->
+    <div class="info-box" *ngIf="filters != null">
+      <!--<h6>Showing {{ sorted_restaurant_list.length }} restaurants</h6>-->
+      <h6>Filters <p *ngFor="let filter of filters" class="filter-list"> {{filter}} </p></h6>
+      <ion-icon name="close" (click)="clear()" ></ion-icon>
+    </div>
     <ion-list *ngFor="let restaurant of sorted_restaurant_list">
       <ion-card class="top_five_restaurants_card">
         <ion-card-title>
-          <a (click)="goToRestaurantDishes(restaurant.value.restaurantName, restaurant.type)">{{ restaurant.value.restaurantName }}</a>
+          <a style="color: #000000;margin-left: 2%;" (click)="goToRestaurantDishes(restaurant.value.restaurantName, restaurant.type)">{{ restaurant.value.restaurantName }}</a>
         </ion-card-title>
         <ion-card-content>
+          <div class="image_container">
+            <img [src]="restaurant.value.imageUrl" class="top_five_restaurant_image">
+          </div>
           <div class="rating_box">
             <ionic3-star-rating
               activeIcon="ios-star"
               defaultIcon="ios-star-outline"
-              activeColor="#488aff"
-              defaultColor="#f4f4f4"
+              activeColor="#E7C251"
+              defaultColor="#E7C251"
               readonly="true"
-              [rating]= restaurant.value.rating >
+              rating= "{{restaurant.value.rating}}" >
             </ionic3-star-rating>
-            {{ restaurant.value.rating }}/5 <br style="margin-top: 5%;">
-            {{ restaurant.value.reviews }} Reviews
+            <div style="color: #000000; font-size: 15px; margin-left: 10%;">{{ restaurant.value.rating }}/5 - <!--<br style="margin-top: 5%;">-->
+              {{ restaurant.value.reviews }} Reviews
+            </div>
           </div>
-          <div class="image_container">
-            <img [src]="restaurant.value.imageUrl" class="top_five_restaurant_image">
-          </div>
+
           <div class="allergen_box">
             <div *ngFor="let allergen of restaurant.value.allergens">
               <img class="allergen_icon" [src]="celery_image_url" *ngIf="allergen == 'celery'" alt="Celery" (click)="showInfoBubble('Celery')">

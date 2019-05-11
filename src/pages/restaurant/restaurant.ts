@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {RestaurantProvider} from "../../providers/restaurant/restaurant";
 import { DishesProvider } from "../../providers/dishes/dishes";
 import {DishPage} from "../dish/dish";
+import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -39,6 +41,8 @@ export class RestaurantPage {
   showlunch: boolean = false;
   dinnerList: any;
   showdinner: boolean = false;
+  showMap: boolean = false;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public restaurantProvider: RestaurantProvider,
@@ -47,6 +51,7 @@ export class RestaurantPage {
     this.breakfastList = [];
     this.lunchlist = [];
     this.dinnerList = [];
+
   }
 
   ionViewDidLoad() {
@@ -82,6 +87,8 @@ export class RestaurantPage {
   }
 
   showBreakFasts() {
+    this.showdinner = false;
+    this.showlunch = false;
     if (this.breakfastList.length == 0){
       for (let dish of this.dishes){
         if (dish.category == "breakfast"){
@@ -93,6 +100,8 @@ export class RestaurantPage {
   }
 
   showLunch() {
+    this.showdinner = false;
+    this.showbreakfast = false;
     if (this.lunchlist.length == 0){
       for (let dish of this.dishes){
         if (dish.category == "lunch"){
@@ -100,10 +109,13 @@ export class RestaurantPage {
         }
       }
     }
+    console.log(this.showlunch);
     this.showlunch = this.showlunch != true;
   }
 
   showDinner() {
+    this.showbreakfast = false;
+    this.showlunch = false;
     if (this.dinnerList.length == 0){
       for (let dish of this.dishes){
         if (dish.category == "dinner"){
@@ -115,6 +127,14 @@ export class RestaurantPage {
   }
 
   navigateToDish(dish) {
-    this.navCtrl.push(DishPage, {dish: dish});
+    this.navCtrl.push(DishPage, {dish: dish, restaurant_name: this.restaurant_name});
+  }
+
+  goHome() {
+    this.navCtrl.pop();
+  }
+
+  showLocation() {
+    this.showMap = this.showMap != true;
   }
 }

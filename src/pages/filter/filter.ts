@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import {RestaurantListPage} from "../restaurant-list/restaurant-list";
 import { FilterProvider } from "../../providers/filter/filter";
 import {HomePage} from "../home/home";
@@ -17,14 +17,17 @@ export class FilterPage {
   open_now_checkbox_option:boolean = false;
   take_out_checkbox_option:boolean = false;
   cuisine_type:any[] = [];
+  private wasListView: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public filterProv: FilterProvider) {
+              public filterProv: FilterProvider, public viewCtrl: ViewController,
+              public platform: Platform) {
     if (localStorage.getItem('current_sorted_list') != null){
       this.restaurant_list = JSON.parse(localStorage.getItem('current_sorted_list'));
     } else {
       this.restaurant_list = JSON.parse(localStorage.getItem('restaurant_list'));
     }
+    this.wasListView = this.navParams.get('state')
   }
 
   ionViewDidLoad() {
@@ -38,13 +41,7 @@ export class FilterPage {
 
   }
 
-  ionViewCanLeave(){
-    this.navCtrl.setRoot(this.navCtrl.getPrevious()).then(
-      () => { console.log("Set root"); }
-    ).catch(
-      () => { console.log("NOP")}
-    );
-  }
+
 
   checkCheapRestaurants(){
     let restaurants = [];
@@ -165,5 +162,22 @@ export class FilterPage {
         }
       }
       return filtered_restaurants;
+  }
+
+  goHome() {
+
+    if (this.wasListView){
+      this.navCtrl.pop();
+    }  else {
+      this.viewCtrl.dismiss().then(() =>
+        {
+          this.navCtrl.popToRoot()
+        }
+      ).catch( () =>
+        {
+          this.platform.exitApp();
+        }
+      );
+    }
   }
 }

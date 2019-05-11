@@ -1,0 +1,10 @@
+import { NgModule } from '@angular/core';
+import { MapComponent } from './map';
+import {IonicPageModule} from "ionic-angular";
+
+@NgModule({
+  declarations: [MapComponent],
+  imports: [IonicPageModule.forChild(Map),],
+  //exports: [MapComponent]
+})
+export class MapComponentModule {}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import {RestaurantListPage} from "../restaurant-list/restaurant-list";
+import {HomePage} from "../home/home";
 
 
 @IonicPage()
@@ -41,17 +42,20 @@ export class AllergensFilterPage {
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
 
   restaurant_list:any[]= [];
+  private wasListView: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+              public platform: Platform) {
     // this.restaurant_list = this.navParams.get('restaurant_list');
     if (localStorage.getItem('current_sorted_list')!= null){
       this.restaurant_list = JSON.parse(localStorage.getItem('current_sorted_list'));
     } else {
-      this.restaurant_list = this.navParams.get('restaurant_list');
+      this.restaurant_list = JSON.parse(localStorage.getItem('restaurant_list'));
     }
     if (localStorage.getItem('allergen_options') != null){
       this.readAllergenValues();
     }
+    this.wasListView = this.navParams.get('state')
   }
 
   ionViewDidLoad() {
@@ -172,6 +176,23 @@ export class AllergensFilterPage {
     }
     if (checked_options.indexOf('wheat') > -1){
       this.wheat_checkbox_option = true;
+    }
+  }
+
+  goHome() {
+    console.log(this.wasListView);
+    if (this.wasListView){
+      this.navCtrl.pop();
+    }  else {
+      this.viewCtrl.dismiss().then(() =>
+        {
+          this.navCtrl.popToRoot()
+        }
+      ).catch( () =>
+        {
+          this.platform.exitApp();
+        }
+      );
     }
   }
 }

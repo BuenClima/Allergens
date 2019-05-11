@@ -32,16 +32,27 @@ page-restaurant-list {
 
 
   .top_five_restaurant_image{
+    height: 125px;
+    width: 150px;
+    /* margin-bottom: 5%;*/
+    clear: both;
+    margin-top: 3% !important;
+    border-radius:10%;
+    margin-bottom: 0 !important;
+    margin-left: 25%;
+    /**
     height: 100px;
     width: 100px;
     margin-bottom: 5%;
     float: right;
     margin-top: 0 !important;
+    */
+
   }
 
   .rating_box {
-    float: left;
-    width: 60%;
+    clear: both;
+    margin-left: 20%;
     font-size: 1.5em;
     //border:1px solid black;
   }
@@ -52,15 +63,90 @@ page-restaurant-list {
   }
 
   .allergen_icon{
-    width: 15%;
-    height: 15%;
+    width: 13%;
+    height: 13%;
     margin-left: 5%;
     float: left;
     margin-top: 2%;
+  }
+
+  .info-box{
+    display: inline-block;
+    /*border:1px solid black;*/
+    width: 90%;
+    margin-left: 5%;
+    padding-top: 2%;
+    background-color: rgba(190,134,88,0.2);
+  }
+
+  .info-box h6{
+    margin-left: 3%;
+    float:left;
+  }
+
+  .info-box ion-icon{
+    font-size: 35px;
+    float:right;
+    margin-right: 3%;
+    margin-top: -3%;
+  }
+
+  .filter-list{
+    display: inline;
+    margin-bottom: -10%;
   }
 
   .allergen_box{
     display: inline-block !important;
     width: 100%;
   }
+
+  .background-content{
+    background-image: url('../../assets/imgs/wheat-background.jpg');
+    background-size: cover;
+  }
+
+
+
+  .md-card-bg .md-card-subtitle,
+  .md-card-bg .md-card-title {
+    position: absolute;
+    top: 50%;
+    color: #fff;
+    width: 100%;
+  }
+
+  .md-card-bg .md-card-title {
+    margin-top: -30px;
+  }
+
+  .md-card-bg .md-card-subtitle {
+    margin-top: 10px;
+  }
+
+  .top_five_restaurants_card {
+    //background-color: #f2e2dc;
+    color: #591902;
+    /*background-color: #EFE9EB;*/
+    background-color: rgba(239,233,235,0.9);
+    border-radius: 10%;
+  }
+
+
+  .back-button-custom{
+    float: left;
+  }
+
+  .nav-title{
+    margin-right: 33%;
+    float: right;
+  }
+
+  ion-fab{
+    margin-top: -3%;
+    button{
+      border: 1px solid black;
+    }
+  }
 }
+

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import { AuthProvider } from "../../providers/auth/auth";
 import {ProfileProvider} from "../../providers/profile/profile";
+import {HomePage} from "../home/home";
+import {catchError} from "rxjs/operators";
 
 @IonicPage()
 @Component({
@@ -31,13 +33,23 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public auth: AuthProvider, public alertCtrl: AlertController,
-              public profileProvider: ProfileProvider) {
+              public profileProvider: ProfileProvider,
+              public viewCtrl: ViewController,
+              public platform: Platform) {
     this.credentials = {email: '', password: ''};
-    this.profile = {created: false, name:'', allergens: {}, restaurantNotifications: ''};
+    this.profile = { name:'', allergens: {}, restaurantNotifications: ''};
   }
 
   ionViewDidLoad() {
+
     this.user = this.auth.getUser();
+    if (this.auth.getUser() != null){
+      this.profileProvider.getProfile().then((profileSnapshot) => {
+        this.profile = profileSnapshot;
+        console.log(this.profile);
+        localStorage.setItem('allergen_options', JSON.stringify(this.profile.allergens));
+      });
+    }
   }
 
   login() {
@@ -50,10 +62,11 @@ export class ProfilePage {
         }).catch((error) => {
           console.log(error);
         });
+        /**
         if (!this.profile.created) {
           this.profile.created = true;
           this.profile = this.profileProvider.setProfile(this.profile);
-        }
+        }*/
       })
       .catch(err => {
         let alert = this.alertCtrl.create({
@@ -69,6 +82,19 @@ export class ProfilePage {
     this.auth.registerUser(this.credentials.email, this.credentials.password)
       .then((res) => {
         console.log("YES")
+        this.profileProvider.setProfile(this.profile);
+        let alert = this.alertCtrl.create(({
+          title : 'Welcome',
+          subTitle: 'to allergens',
+          buttons: [{
+            text: 'Ok',
+            role: 'ok',
+            handler: () => {
+              this.login();
+            }
+          }]
+        }));
+        alert.present();
       })
       .catch(err => {
         let alert = this.alertCtrl.create({
@@ -132,5 +158,19 @@ export class ProfilePage {
         });
         alert.present();
       });
+  }
+
+  goHome() {
+    this.viewCtrl.dismiss().then(() =>
+    {
+      this.navCtrl.pop()
+      //this.navCtrl.push(HomePage)
+    }
+    ).catch( () =>
+    {
+      this.platform.exitApp();
+    }
+    );
+
   }
 }
