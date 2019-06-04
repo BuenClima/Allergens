@@ -100,10 +100,10 @@ export class RestaurantListPage {
   showInfoBubble(allergen: string) {
     const toast = this.toastCtrl.create({
       message: allergen,
-      duration: 2000,
-      position: "middle",
+      duration: 1000,
+      position: "top",
       dismissOnPageChange: true,
-      showCloseButton: true,
+      showCloseButton: false,
       closeButtonText: "Ok"
     });
     toast.present();

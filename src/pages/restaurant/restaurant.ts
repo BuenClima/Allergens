@@ -42,7 +42,7 @@ export class RestaurantPage {
   dinnerList: any;
   showdinner: boolean = false;
   showMap: boolean = false;
-
+  activated:any = -1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public restaurantProvider: RestaurantProvider,
@@ -77,16 +77,21 @@ export class RestaurantPage {
   showInfoBubble(allergen: string) {
     const toast = this.toastCtrl.create({
       message: allergen,
-      duration: 2000,
-      position: "middle",
+      duration: 1000,
+      position: "top",
       dismissOnPageChange: true,
-      showCloseButton: true,
+      showCloseButton: false,
       closeButtonText: "Ok"
     });
     toast.present();
   }
 
   showBreakFasts() {
+    if (this.activated != 1){
+      this.activated = 1
+    }  else {
+      this.activated= 0
+    }
     this.showdinner = false;
     this.showlunch = false;
     if (this.breakfastList.length == 0){
@@ -100,6 +105,11 @@ export class RestaurantPage {
   }
 
   showLunch() {
+    if (this.activated != 2){
+      this.activated = 2
+    }  else {
+      this.activated= 0
+    }
     this.showdinner = false;
     this.showbreakfast = false;
     if (this.lunchlist.length == 0){
@@ -114,6 +124,11 @@ export class RestaurantPage {
   }
 
   showDinner() {
+    if (this.activated != 3){
+      this.activated = 3
+    }  else {
+      this.activated= 0
+    }
     this.showbreakfast = false;
     this.showlunch = false;
     if (this.dinnerList.length == 0){

@@ -7,10 +7,9 @@
 <ion-header>
 
   <ion-navbar hideBackButton>
-    <ion-title>Allergens</ion-title>
-    <button (click)="applyFilter()" class="apply_button" ion-button color="dark" outline>Apply</button>
+    <ion-title style="margin-right: 33%;float: right;">Allergens</ion-title>
     <ion-buttons>
-      <button ion-button (click)="goHome()">
+      <button ion-button (click)="goHome()" style=" float: left;">
         <ion-icon name="arrow-back" style="float: left;"></ion-icon>
       </button>
     </ion-buttons>
@@ -82,4 +81,5 @@
       </ion-item>
     </ion-list>
   </div>
+  <button (click)="applyFilter()" class="apply_button" ion-button color="custom" >Apply</button>
 </ion-content>

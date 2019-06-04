@@ -17,6 +17,7 @@ export class FilterPage {
   open_now_checkbox_option:boolean = false;
   take_out_checkbox_option:boolean = false;
   cuisine_type:any[] = [];
+  popular:any[] = [];
   private wasListView: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

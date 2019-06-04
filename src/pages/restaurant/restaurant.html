@@ -81,15 +81,27 @@
 
   <div id="dishes_container" style="float: left; clear: both;">
     <div class="menu-container">
-    <button ion-button (click)="showBreakFasts()" class="but"> Breakfast
+    <button *ngIf="activated != 1" ion-button #first (click)="showBreakFasts()" class="but" color="custom-light"> Breakfast
       <ion-icon *ngIf="!showbreakfast" name="arrow-dropup" ></ion-icon>
       <ion-icon *ngIf="showbreakfast" name="arrow-dropdown" ></ion-icon>
     </button>
-    <button ion-button (click)="showLunch()" class="but"> Lunch
+      <button *ngIf="activated == 1" ion-button #first (click)="showBreakFasts()" class="but" color="custom"> Breakfast
+        <ion-icon *ngIf="!showbreakfast" name="arrow-dropup" ></ion-icon>
+        <ion-icon *ngIf="showbreakfast" name="arrow-dropdown" ></ion-icon>
+      </button>
+    <button *ngIf="activated != 2" ion-button #second (click)="showLunch()" class="but" color="custom-light"> Lunch
       <ion-icon *ngIf="!showlunch" name="arrow-dropup" ></ion-icon>
       <ion-icon *ngIf="showlunch" name="arrow-dropdown" ></ion-icon>
     </button>
-    <button ion-button (click)="showDinner()" class="but"> Dinner
+    <button *ngIf="activated == 2" ion-button #second (click)="showLunch()" class="but" color="custom"> Lunch
+      <ion-icon *ngIf="!showlunch" name="arrow-dropup" ></ion-icon>
+      <ion-icon *ngIf="showlunch" name="arrow-dropdown" ></ion-icon>
+    </button>
+    <button *ngIf="activated != 3" ion-button #third (click)="showDinner()" class="but" color="custom-light"> Dinner
+      <ion-icon *ngIf="!showdinner" name="arrow-dropup" ></ion-icon>
+      <ion-icon *ngIf="showdinner" name="arrow-dropdown" ></ion-icon>
+    </button>
+    <button *ngIf="activated == 3" ion-button #third (click)="showDinner()" class="but" color="custom"> Dinner
       <ion-icon *ngIf="!showdinner" name="arrow-dropup" ></ion-icon>
       <ion-icon *ngIf="showdinner" name="arrow-dropdown" ></ion-icon>
     </button>
@@ -200,9 +212,9 @@
     </ion-list>
   </div>
 
-  <div style="margin-left:5%;height: 100%; width: 100%; clear: both;">
+  <div style="margin-left:5%;height: 50%; width: 90%; clear: both;">
     <h1 style="margin-left: 35%;">Map</h1>
     <!--<app-custom-map [position]="{'latitude': restaurant.latitude, 'longitude': restaurant.longitude}"></app-custom-map>-->
-    <app-custom-map></app-custom-map>
+    <app-custom-map restname="{{restaurant_name}}"></app-custom-map>
   </div>
 </ion-content>

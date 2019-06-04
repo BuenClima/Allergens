@@ -1,10 +1,10 @@
 <ion-header>
 
   <ion-navbar hideBackButton>
-    <ion-title>Filter</ion-title>
-    <button (click)="applyFilter()" class="apply_button" ion-button color="dark" outline>Apply</button>
+    <ion-title style="margin-right: 33%;float: right;">Filter</ion-title>
+
     <ion-buttons>
-      <button ion-button (click)="goHome()">
+      <button ion-button (click)="goHome()" style=" float: left;">
         <ion-icon name="arrow-back" style="float: left;"></ion-icon>
       </button>
     </ion-buttons>
@@ -17,8 +17,17 @@
 
   <div id="list_container">
     <ion-list>
-
-      <ion-item-group>
+      <ion-item>
+        <ion-label>Most Popular</ion-label>
+        <ion-select [(ngModel)]="popular" multiple="true">
+          <ion-option value="cheap">Cheap</ion-option>
+          <ion-option value="midrange">Mid-range</ion-option>
+          <ion-option value="fine">Fine dating</ion-option>
+          <ion-option value="open">Open now</ion-option>
+          <ion-option value="takeout">Take out</ion-option>
+        </ion-select>
+      </ion-item>
+     <!-- <ion-item-group>
         <ion-label>MostPopular</ion-label>
         <ion-item>
             <ion-label>Cheap</ion-label>
@@ -40,7 +49,7 @@
             <ion-label>Take out</ion-label>
             <ion-checkbox color="secondary" class="" [(ngModel)]="take_out_checkbox_option"></ion-checkbox>
           </ion-item>
-      </ion-item-group>
+      </ion-item-group>-->
       <ion-item>
         <ion-label>Cuisine Type</ion-label>
         <ion-select [(ngModel)]="cuisine_type" multiple="true">
@@ -53,4 +62,5 @@
       </ion-item>
     </ion-list>
   </div>
+  <button (click)="applyFilter()" class="apply_button" ion-button color="custom" >Apply</button>
 </ion-content>

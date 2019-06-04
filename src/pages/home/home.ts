@@ -29,7 +29,7 @@ export class HomePage {
   searchTerm: any;
   searchFormControl:FormControl;
   restaurant_list:any;
-  placeholder_search_bar = "Tap a city!";
+  placeholder_search_bar = "Search";
 
   map:GoogleMap;
   position:Geoposition = null;
@@ -130,10 +130,10 @@ export class HomePage {
   showInfoBubble(allergen: string) {
     const toast = this.toastCtrl.create({
       message: allergen,
-      duration: 2000,
-      position: "middle",
+      duration: 1000,
+      position: "top",
       dismissOnPageChange: true,
-      showCloseButton: true,
+      showCloseButton: false,
       closeButtonText: "Ok",
       cssClass: "test"
     });

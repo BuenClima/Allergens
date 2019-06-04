@@ -58,13 +58,14 @@
   </div>
 
   <div *ngIf="user != null">
+    <ion-label class="login-form">User</ion-label>
     <form>
       <ion-row>
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-label floating>Name</ion-label>
-              <ion-input [(ngModel)]="profile.name" name="name" type="text" autocapitalize="off"></ion-input>
+              <ion-label style="margin-left: 5%;" floating>Name</ion-label>
+              <ion-input style="margin-left: 10%;" [(ngModel)]="profile.name" name="name" type="text" autocapitalize="off"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Allergens</ion-label>

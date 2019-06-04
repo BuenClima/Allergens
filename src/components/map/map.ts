@@ -21,6 +21,8 @@ export class MapComponent {
   @Input('position')
   position:any;
 
+  @Input('restname')
+  restname:any;
   // @Output('restaurant_name')
   // restaurant_name:EventEmitter<string> = new EventEmitter<string>();
 
@@ -60,24 +62,34 @@ export class MapComponent {
     };
     this.map = GoogleMaps.create('map-canvas', mapOptions);
     let clicked = false;
+
+    let markers = [{title: "Que leche", position:{lat: 28.1042, lng: -15.41698},allergens:["celery","crustacean","egg", "fish", "soya"], icon : ''},
+      {title: "La Perrachica", position:{lat: 28.104070, lng: -15.416070},allergens:["celery","wheat","egg", "lupin", "mustard", "sesame"], icon : ''},
+      {title: "Perinqué", position:{lat: 28.103430, lng: -15.414180},allergens:["egg","milk","egg", "mollusc", "nuts", "peanuts"],  icon : ''},
+      {title: "Scooter's", position:{lat: 28.102520, lng: -15.415360},allergens:["sulphur","wheat","fish", "mollusc", "soya"],  icon : ''},
+      {title: "Los 5 Sentidos", position:{lat: 28.102200, lng: -15.414320},allergens:["celery","sesame","lupin", "milk"],  icon : ''},
+      {title: "El Vasco", position:{lat: 28.101970, lng: -15.414600},allergens:["wheat","crustacean","egg", "fish", "soya", "milk", "celery", "sesame"],  icon : ''},
+      {title: "El Rifeño", position:{lat: 28.102060, lng: -15.414090},allergens:[ "soya", "milk", "celery"],  icon : ''},
+      {title: "La Vegueta de Colón", position:{lat: 28.101540, lng: -15.414690},allergens:[ "wheat", "fish", "mollusc"],  icon : ''},
+      {title: "La Taberna de El Monje", position:{lat: 28.100430, lng: -15.414300},allergens:[ "gluten", "soya", "mustard"],  icon : ''},
+      {title: "La Hierba Luisa", position:{lat: 28.101200, lng: -15.412610},allergens:[ "wheat", "crustacean", "egg", "fish", "soya"],  icon : ''},
+      {title: "Casa Montesdeoca", position:{lat: 28.101650, lng: -15.413470},allergens:["fish", "soya"],  icon : ''},
+      {title: "El Canalla", position:{lat: 28.101320, lng: -15.415420},allergens:["crustacean", "egg", "fish"],  icon : ''},
+      {title: "La Champiñoneria", position:{lat: 28.101620, lng: -15.412890},allergens:["egg", "fish","mustard"],  icon : ''},
+      {title: "Trés Jolie", position:{lat: 28.101880, lng: -15.413190},allergens:[ "fish", "mollusc", "wheat", "nuts", "peanuts"],  icon : ''},
+      {title: "Marsala", position:{lat: 28.101970, lng: -15.413310},allergens:["wheat", "nuts", "peanuts", "sesame"],  icon : ''},
+      {title: "La Piedra", position:{lat: 28.101550, lng: -15.412850},allergens:["wheat", "nuts", "peanuts", "sesame"],  icon : ''},
+    ];
+    // 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green.png'
+
+    for( let mark of markers){
+      if (this.restname == mark.title){
+        console.log("OK")
+        mark.icon = 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green.png'
+      }
+    }
     this.map.addMarkerCluster({
-      markers: [{title: "Que leche!", position:{lat: 28.1042, lng: -15.41698},allergens:["celery","crustacean","egg", "fish", "soya"]},
-        {title: "La Perrachica", position:{lat: 28.104070, lng: -15.416070},allergens:["celery","wheat","egg", "lupin", "mustard", "sesame"]},
-        {title: "Perinqué", position:{lat: 28.103430, lng: -15.414180},allergens:["egg","milk","egg", "mollusc", "nuts", "peanuts"]},
-        {title: "Scooter's Vegueta-Triana", position:{lat: 28.102520, lng: -15.415360},allergens:["sulphur","wheat","fish", "mollusc", "soya"]},
-        {title: "Los 5 Sentidos", position:{lat: 28.102200, lng: -15.414320},allergens:["celery","sesame","lupin", "milk"]},
-        {title: "El Vasco de Vegueta", position:{lat: 28.101970, lng: -15.414600},allergens:["wheat","crustacean","egg", "fish", "soya", "milk", "celery", "sesame"]},
-        {title: "El Rifeño", position:{lat: 28.102060, lng: -15.414090},allergens:[ "soya", "milk", "celery"]},
-        {title: "La Vegueta de Colón", position:{lat: 28.101540, lng: -15.414690},allergens:[ "wheat", "fish", "mollusc"]},
-        {title: "La Taberna de El Monje", position:{lat: 28.100430, lng: -15.414300},allergens:[ "gluten", "soya", "mustard"]},
-        {title: "La Hierba Luisa", position:{lat: 28.101200, lng: -15.412610},allergens:[ "wheat", "crustacean", "egg", "fish", "soya"]},
-        {title: "Restaurante Casa Montesdeoca", position:{lat: 28.101650, lng: -15.413470},allergens:["fish", "soya"]},
-        {title: "Tasca El Canalla De Vegueta", position:{lat: 28.101320, lng: -15.415420},allergens:["crustacean", "egg", "fish"]},
-        {title: "Bistro La Champiñoneria", position:{lat: 28.101620, lng: -15.412890},allergens:["egg", "fish","mustard"]},
-        {title: "Trés Jolie", position:{lat: 28.101880, lng: -15.413190},allergens:[ "fish", "mollusc", "wheat", "nuts", "peanuts"]},
-        {title: "Marsala", position:{lat: 28.101970, lng: -15.413310},allergens:["wheat", "nuts", "peanuts", "sesame"]},
-        {title: "Tasca La Piedra Vegueta", position:{lat: 28.101550, lng: -15.412850},allergens:["wheat", "nuts", "peanuts", "sesame"]},
-      ],
+      markers: markers,
       icons: [
         {min:3, max: 9,
           url: ".assets/imgs/allergens/celery.png",

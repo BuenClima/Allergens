@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 
 /**
  * Generated class for the DishPage page.
@@ -29,12 +29,14 @@ export class DishPage {
   soya_image_url:string = 'assets/imgs/allergens/soya.png';
   sulphur_image_url:string = 'assets/imgs/allergens/sulphur.png';
   wheat_image_url:string = 'assets/imgs/allergens/wheat.png';
+  showa:boolean = false;
 
   dish:any;
   restaurant_name: any;
   show: any;
+  activated: any = -1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.dish = navParams.get('dish');
     this.restaurant_name = navParams.get('restaurant_name');
   }
@@ -46,5 +48,24 @@ export class DishPage {
 
   showIngredients() {
     this.show = this.show != true;
+    this.showa = this.showa != true;
+    if (this.activated != 1){
+      this.activated = 1
+    }  else {
+      this.activated = 0
+    }
+  }
+
+  showInfoBubble(allergen: string) {
+    const toast = this.toastCtrl.create({
+      message: allergen,
+      duration: 1000,
+      position: "top",
+      dismissOnPageChange: true,
+      showCloseButton: false,
+      closeButtonText: "Ok",
+      cssClass: "test"
+    });
+    toast.present();
   }
 }

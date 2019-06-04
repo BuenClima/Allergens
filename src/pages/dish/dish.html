@@ -7,7 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Restaurant {{ restaurant_name }}</ion-title>
+    <ion-title style="position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 90px 1px;
+  width: 100%;
+  height: 100%;
+  text-align: center;">{{restaurant_name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -42,10 +48,15 @@
         </div>
         <ion-label class="dish-calories">Calories : {{ dish.calories }} kCal</ion-label>
 
-        <button ion-button (click)="showIngredients()" class="but">Ingredients</button>
-        <div *ngIf="show == true">
+        <button *ngIf="activated != 1" ion-button (click)="showIngredients()" class="but" color="custom-light">Ingredients
+          <ion-icon *ngIf="!showa" name="arrow-dropup" ></ion-icon>
+          <ion-icon *ngIf="showa" name="arrow-dropdown" ></ion-icon></button>
+        <button  *ngIf="activated == 1"ion-button (click)="showIngredients()" class="but" color="custom">Ingredients
+          <ion-icon *ngIf="!showa" name="arrow-dropup" ></ion-icon>
+          <ion-icon *ngIf="showa" name="arrow-dropdown" ></ion-icon></button>
+        <div class="showingredients" *ngIf="show == true">
           <ion-list *ngFor="let ingredient of dish.ingredients" class="list">
-            <ion-item class="item">
+            <ion-item class="item showingredients">
               <ion-icon name="checkmark"></ion-icon>
               {{ ingredient }}
             </ion-item>
